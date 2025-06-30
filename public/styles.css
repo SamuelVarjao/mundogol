@@ -1,0 +1,875 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  line-height: 1.5;
+}
+
+.mundo-gol {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #059669 0%, #047857 50%, #065f46 100%);
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+/* ====================================
+   HEADER
+   ==================================== */
+
+.header {
+  background: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 1rem 1.5rem;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logo-icon {
+  font-size: 1.875rem;
+}
+
+.logo-text {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #1f2937;
+}
+
+.header-stats {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.stat-icon-trophy { color: #eab308; }
+.stat-icon-user { color: #10b981; }
+
+.stat-value {
+  font-weight: 500;
+}
+
+.cards-remaining {
+  text-align: right;
+}
+
+.cards-remaining-number {
+  font-weight: 500;
+  color: #1f2937;
+}
+
+.cards-remaining-label {
+  font-size: 0.75rem;
+}
+
+/* ====================================
+   FILTROS
+   ==================================== */
+
+.filters-container {
+  background: #1f2937;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.filters-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.filters-badge {
+  background: #ef4444;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.clear-filters-btn {
+  background: #ef4444;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.clear-filters-btn:hover {
+  background: #dc2626;
+}
+
+.filters-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .filters-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+.filter-item {
+  position: relative;
+}
+
+.filter-select {
+  width: 100%;
+  color: white;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  font-size: 0.875rem;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  appearance: none;
+  background-size: 16px;
+  background-position: right 12px center;
+  background-repeat: no-repeat;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+}
+
+.filter-select:hover {
+  opacity: 0.9;
+}
+
+/* Gradientes dos filtros */
+.filter-pais { background: linear-gradient(to right, #3b82f6, #2563eb); }
+.filter-decada { background: linear-gradient(to right, #8b5cf6, #7c3aed); }
+.filter-time { background: linear-gradient(to right, #10b981, #059669); }
+.filter-jogador { background: linear-gradient(to right, #6366f1, #4f46e5); }
+.filter-campeonato { background: linear-gradient(to right, #eab308, #d97706); }
+
+.filter-icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  font-size: 1.125rem;
+}
+
+.filter-arrow {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  width: 1rem;
+  height: 1rem;
+  fill: currentColor;
+}
+
+.filter-option {
+  background: #1f2937;
+  color: white;
+}
+
+/* ====================================
+   BOTÃO PRINCIPAL
+   ==================================== */
+
+.main-section {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.main-button {
+  background: linear-gradient(to right, #fb923c, #f97316);
+  color: white;
+  font-weight: bold;
+  padding: 1rem 2rem;
+  border-radius: 9999px;
+  font-size: 1.25rem;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s;
+  transform: scale(1);
+  margin-bottom: 1rem;
+}
+
+.main-button:hover:not(:disabled) {
+  background: linear-gradient(to right, #f97316, #ea580c);
+  box-shadow: 0 20px 25px rgba(0, 0, 0, 0.15);
+  transform: scale(1.05);
+}
+
+.main-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.main-description {
+  color: white;
+  font-size: 1.125rem;
+}
+
+/* ====================================
+   CARDS DE ESTATÍSTICAS
+   ==================================== */
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+  .stats-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.stat-card {
+  background: rgba(22, 101, 52, 0.5);
+  backdrop-filter: blur(12px);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  text-align: center;
+  color: white;
+}
+
+.stat-number {
+  font-size: 1.875rem;
+  font-weight: bold;
+}
+
+.stat-number-yellow { color: #fbbf24; }
+.stat-number-blue { color: #60a5fa; }
+.stat-number-purple { color: #a78bfa; }
+
+.stat-label {
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+/* ====================================
+   ÁREA DO BARALHO
+   ==================================== */
+
+.deck-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+  min-height: 24rem;
+}
+
+/* ====================================
+   ANIMAÇÃO DE EMBARALHAMENTO
+   ==================================== */
+
+.shuffle-container {
+  position: relative;
+}
+
+.soccer-ball {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 0;
+}
+
+.ball {
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+  animation: spin 3s linear infinite;
+  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
+  background: 
+    radial-gradient(circle at 30% 30%, #ffffff 20%, #000000 21%, #000000 22%, #ffffff 23%, #ffffff 40%, #000000 41%, #000000 42%, #ffffff 43%),
+    radial-gradient(circle at 70% 30%, #ffffff 20%, #000000 21%, #000000 22%, #ffffff 23%, #ffffff 40%, #000000 41%, #000000 42%, #ffffff 43%),
+    radial-gradient(circle at 50% 60%, #ffffff 20%, #000000 21%, #000000 22%, #ffffff 23%, #ffffff 40%, #000000 41%, #000000 42%, #ffffff 43%),
+    #ffffff;
+}
+
+.ball-pattern {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  opacity: 0.3;
+  background: conic-gradient(from 0deg, 
+    #000 0deg 60deg, 
+    #fff 60deg 120deg, 
+    #000 120deg 180deg, 
+    #fff 180deg 240deg, 
+    #000 240deg 300deg, 
+    #fff 300deg 360deg
+  );
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.cards-shuffling {
+  position: absolute;
+  width: 16rem;
+  height: 20rem;
+  background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 50%, #1e3a8a 100%);
+  border-radius: 1rem;
+  box-shadow: 
+    0 20px 40px rgba(0,0,0,0.3),
+    inset 0 2px 4px rgba(255,255,255,0.1);
+  border: 4px solid rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  z-index: 10;
+  transition: all 0.1s ease-out;
+}
+
+.card-back {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-pattern {
+  position: absolute;
+  inset: 0;
+  opacity: 0.1;
+  background-image: 
+    radial-gradient(circle at 25% 25%, white 2px, transparent 2px),
+    radial-gradient(circle at 75% 75%, white 2px, transparent 2px);
+  background-size: 20px 20px;
+}
+
+.card-icon {
+  color: white;
+  font-size: 3.75rem;
+  margin-bottom: 0.5rem;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.card-text {
+  color: white;
+  font-size: 0.875rem;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+}
+
+.card-corner {
+  position: absolute;
+  width: 2rem;
+  height: 2rem;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.corner-tl {
+  top: 1rem;
+  left: 1rem;
+  border-right: none;
+  border-bottom: none;
+  border-top-left-radius: 0.5rem;
+}
+
+.corner-tr {
+  top: 1rem;
+  right: 1rem;
+  border-left: none;
+  border-bottom: none;
+  border-top-right-radius: 0.5rem;
+}
+
+.corner-bl {
+  bottom: 1rem;
+  left: 1rem;
+  border-right: none;
+  border-top: none;
+  border-bottom-left-radius: 0.5rem;
+}
+
+.corner-br {
+  bottom: 1rem;
+  right: 1rem;
+  border-left: none;
+  border-top: none;
+  border-bottom-right-radius: 0.5rem;
+}
+
+.shuffle-spacer {
+  width: 20rem;
+  height: 24rem;
+}
+
+/* ====================================
+   CARTA DE CURIOSIDADE
+   ==================================== */
+
+.curiosity-card-container {
+  width: 100%;
+  max-width: 64rem;
+  transition: all 0.7s;
+}
+
+.curiosity-card-container.flipped {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.curiosity-card-container.not-flipped {
+  transform: scale(0.95);
+  opacity: 0;
+}
+
+.curiosity-card {
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+  padding: 2rem;
+  border: 4px solid #fb923c;
+  transition: transform 0.3s;
+}
+
+.curiosity-card:hover {
+  transform: scale(1.05);
+}
+
+.card-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.card-badge {
+  background: linear-gradient(to right, #fb923c, #f97316);
+  color: white;
+  padding: 0.5rem 1.5rem;
+  border-radius: 9999px;
+  display: inline-block;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.card-main-icon {
+  font-size: 3.75rem;
+  margin-bottom: 1rem;
+}
+
+.card-content {
+  text-align: center;
+}
+
+.curiosity-text {
+  font-size: 1.25rem;
+  color: #1f2937;
+  line-height: 1.75;
+  margin-bottom: 2rem;
+  font-weight: 500;
+  border-left: 4px solid #fb923c;
+  padding-left: 1rem;
+  font-style: italic;
+}
+
+/* ====================================
+   TAGS DA CURIOSIDADE
+   ==================================== */
+
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.tag {
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  border: 2px solid;
+}
+
+.tag-pais {
+  background: #dbeafe;
+  color: #1e40af;
+  border-color: #93c5fd;
+}
+
+.tag-time {
+  background: #d1fae5;
+  color: #065f46;
+  border-color: #6ee7b7;
+}
+
+.tag-campeonato {
+  background: #fef3c7;
+  color: #92400e;
+  border-color: #fcd34d;
+}
+
+.tag-jogador {
+  background: #e9d5ff;
+  color: #6b21a8;
+  border-color: #c4b5fd;
+}
+
+.tag-decada {
+  background: #f3f4f6;
+  color: #1f2937;
+  border-color: #d1d5db;
+}
+
+/* ====================================
+   BOTÕES DE AÇÃO
+   ==================================== */
+
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (min-width: 640px) {
+  .action-buttons {
+    flex-direction: row;
+  }
+}
+
+.action-btn {
+  font-weight: bold;
+  padding: 1rem 2rem;
+  border-radius: 0.75rem;
+  font-size: 1.125rem;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transform: scale(1);
+}
+
+.action-btn:hover:not(:disabled) {
+  box-shadow: 0 20px 25px rgba(0, 0, 0, 0.15);
+  transform: scale(1.05);
+}
+
+.action-btn:disabled {
+  background: #9ca3af !important;
+  cursor: not-allowed;
+}
+
+.next-card-btn {
+  background: #16a34a;
+  color: white;
+}
+
+.next-card-btn:hover:not(:disabled) {
+  background: #15803d;
+}
+
+.share-btn {
+  background: #3b82f6;
+  color: white;
+}
+
+.share-btn:hover {
+  background: #2563eb;
+}
+
+/* ====================================
+   MENSAGEM DE CONCLUSÃO
+   ==================================== */
+
+.completion-message {
+  color: #6b7280;
+  margin-top: 1rem;
+  background: #fffbeb;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid #fcd34d;
+}
+
+/* ====================================
+   ESTADO INICIAL
+   ==================================== */
+
+.initial-state {
+  text-align: center;
+  color: white;
+}
+
+.initial-icon {
+  font-size: 5rem;
+  margin-bottom: 1rem;
+}
+
+.initial-text {
+  font-size: 1.25rem;
+}
+
+/* ====================================
+   BOTÃO REINICIAR
+   ==================================== */
+
+.restart-section {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.restart-btn {
+  background: #ef4444;
+  color: white;
+  font-weight: bold;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 auto;
+}
+
+.restart-btn:hover {
+  background: #dc2626;
+}
+
+/* ====================================
+   RESPONSIVIDADE
+   ==================================== */
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+  
+  .header-container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .header-stats {
+    justify-content: center;
+  }
+  
+  .curiosity-card {
+    padding: 1.5rem;
+  }
+  
+  .curiosity-text {
+    font-size: 1.125rem;
+  }
+  
+  .main-button {
+    padding: 0.875rem 1.5rem;
+    font-size: 1.125rem;
+  }
+  
+  .action-btn {
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .ball {
+    width: 6rem;
+    height: 6rem;
+  }
+  
+  .cards-shuffling {
+    width: 12rem;
+    height: 15rem;
+  }
+  
+  .card-icon {
+    font-size: 2.5rem;
+  }
+  
+  .card-text {
+    font-size: 0.75rem;
+  }
+}
+
+/* ====================================
+   ANIMAÇÕES PERSONALIZADAS
+   ==================================== */
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+@keyframes bounceIn {
+  0% { transform: scale(0.3); opacity: 0; }
+  50% { transform: scale(1.05); }
+  70% { transform: scale(0.9); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.slide-up {
+  animation: slideUp 0.5s ease-out;
+}
+
+.bounce-in {
+  animation: bounceIn 0.8s ease-out;
+}
+
+/* ====================================
+   UTILITÁRIOS
+   ==================================== */
+
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.font-bold { font-weight: bold; }
+.font-medium { font-weight: 500; }
+
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.flex-wrap { flex-wrap: wrap; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+
+.gap-1 { gap: 0.25rem; }
+.gap-2 { gap: 0.5rem; }
+.gap-3 { gap: 0.75rem; }
+.gap-4 { gap: 1rem; }
+
+.m-0 { margin: 0; }
+.m-1 { margin: 0.25rem; }
+.m-2 { margin: 0.5rem; }
+.m-4 { margin: 1rem; }
+
+.p-1 { padding: 0.25rem; }
+.p-2 { padding: 0.5rem; }
+.p-4 { padding: 1rem; }
+.p-6 { padding: 1.5rem; }
+
+.w-full { width: 100%; }
+.h-full { height: 100%; }
+
+.rounded { border-radius: 0.25rem; }
+.rounded-lg { border-radius: 0.5rem; }
+.rounded-xl { border-radius: 0.75rem; }
+.rounded-full { border-radius: 9999px; }
+
+.shadow-sm { box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); }
+.shadow-lg { box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); }
+.shadow-xl { box-shadow: 0 20px 25px rgba(0, 0, 0, 0.1); }
+
+/* ====================================
+   ESTADOS ESPECIAIS
+   ==================================== */
+
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: block;
+}
+
+/* ====================================
+   PRINT STYLES
+   ==================================== */
+
+@media print {
+  .mundo-gol {
+    background: white;
+  }
+  
+  .header {
+    box-shadow: none;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .filters-container,
+  .action-buttons,
+  .restart-section {
+    display: none;
+  }
+  
+  .curiosity-card {
+    box-shadow: none;
+    border: 2px solid #ccc;
+  }
+}

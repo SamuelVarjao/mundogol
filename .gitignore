@@ -1,0 +1,28 @@
+# Node.js
+node_modules/
+
+# Build files
+/dist
+/build
+
+# Logs
+*.log
+
+# IDE files
+.vscode/
+.idea/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Babel cache
+/.babel_cache
+
+# Webpack
+.cache/
+
+# Miscellaneous
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

@@ -1,0 +1,33 @@
+{
+  "name": "mundogol",
+  "version": "1.0.0",
+  "description": "Aplicação MundoGol utilizando React e Webpack",
+  "main": "src/App.js",
+  "scripts": {
+    "start": "webpack serve --mode development",
+    "build": "webpack --mode production"    
+  },
+  "keywords": [
+    "React",
+    "Webpack",
+    "Babel"
+  ],
+  "author": "Seu Nome",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "webpack": "^5.0.0",
+    "webpack-cli": "^4.0.0",
+    "webpack-dev-server": "^4.0.0",
+    "babel-loader": "^8.2.2",
+    "@babel/core": "^7.16.0",
+    "@babel/preset-env": "^7.16.0",
+    "@babel/preset-react": "^7.16.0",
+    "html-webpack-plugin": "^5.3.1",
+    "style-loader": "^3.0.0",
+    "css-loader": "^6.0.0"
+  }
+}
