@@ -1,0 +1,189 @@
+/* MundoGol — estilos das páginas de conteúdo.
+   Prefixo mg- em tudo para não colidir com o CSS que o bundle.js injeta. */
+
+:root {
+  --mg-verde: #08956d;
+  --mg-verde-esc: #067154;
+  --mg-verde-2: #32824a;
+  --mg-tinta: #12211b;
+  --mg-tinta-fraca: #4a5c53;
+  --mg-borda: #dbe5df;
+  --mg-papel: #ffffff;
+  --mg-fundo: #f3f7f4;
+  --mg-max: 1080px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--mg-fundo);
+  color: var(--mg-tinta);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-text-size-adjust: 100%;
+}
+
+.mg-container { width: 100%; max-width: var(--mg-max); margin: 0 auto; padding: 0 20px; }
+
+.mg-pular {
+  position: absolute; left: -9999px;
+  background: #fff; color: var(--mg-verde-esc); padding: 10px 16px; z-index: 100;
+}
+.mg-pular:focus { left: 12px; top: 12px; }
+
+/* ---------------------------------------------------------------- topo */
+
+.mg-topo {
+  background: linear-gradient(135deg, var(--mg-verde), var(--mg-verde-2));
+  color: #fff;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, .12);
+}
+.mg-topo-int {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px 28px;
+  padding-top: 12px; padding-bottom: 12px;
+}
+.mg-marca {
+  display: flex; align-items: center; gap: 10px;
+  color: #fff; text-decoration: none; font-weight: 800; font-size: 20px; letter-spacing: .2px;
+}
+.mg-marca img { display: block; width: 44px; height: 44px; object-fit: contain; }
+
+.mg-nav { display: flex; flex-wrap: wrap; gap: 4px 6px; }
+.mg-nav a {
+  color: #fff; text-decoration: none; font-weight: 600; font-size: 15px;
+  padding: 6px 12px; border-radius: 999px; transition: background .15s;
+}
+.mg-nav a:hover, .mg-nav a:focus { background: rgba(255, 255, 255, .18); }
+
+/* ------------------------------------------------------------- migalhas */
+
+.mg-migalhas { margin: 20px 0 4px; font-size: 14px; color: var(--mg-tinta-fraca); }
+.mg-migalhas ol { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; }
+.mg-migalhas li + li::before { content: "›"; margin-right: 6px; color: #9bb0a5; }
+.mg-migalhas a { color: var(--mg-verde-esc); }
+
+/* --------------------------------------------------------------- artigo */
+
+.mg-artigo { margin: 0 0 56px; }
+
+h1 {
+  font-size: clamp(28px, 4.2vw, 40px);
+  line-height: 1.18; letter-spacing: -.4px;
+  margin: 18px 0 14px;
+}
+h2 {
+  font-size: clamp(21px, 2.6vw, 26px);
+  line-height: 1.25; letter-spacing: -.2px;
+  margin: 36px 0 12px; padding-bottom: 8px;
+  border-bottom: 2px solid var(--mg-borda);
+}
+h3 { font-size: 17px; margin: 20px 0 8px; }
+
+p { margin: 0 0 14px; }
+a { color: var(--mg-verde-esc); }
+a:hover { color: var(--mg-verde); }
+
+.mg-intro {
+  font-size: 19px; line-height: 1.6; color: #2c4038;
+  border-left: 4px solid var(--mg-verde); padding-left: 16px; margin-bottom: 26px;
+}
+.mg-destaque {
+  background: var(--mg-papel); border: 1px solid var(--mg-borda); border-radius: 10px;
+  padding: 14px 18px; font-size: 18px; font-weight: 600;
+}
+.mg-texto { max-width: 760px; }
+
+.mg-bullets { margin: 0 0 16px; padding-left: 22px; }
+.mg-bullets li { margin-bottom: 9px; }
+
+/* ------------------------------------------------------ lista de fatos */
+
+.mg-bloco { margin-bottom: 8px; }
+
+.mg-lista { list-style: none; margin: 0 0 20px; padding: 0; display: grid; gap: 12px; }
+.mg-item {
+  background: var(--mg-papel); border: 1px solid var(--mg-borda);
+  border-left: 4px solid var(--mg-verde); border-radius: 10px;
+  padding: 14px 18px;
+}
+.mg-item p { margin: 0; }
+.mg-item-meta {
+  margin-top: 8px !important; font-size: 13.5px; color: var(--mg-tinta-fraca);
+}
+.mg-item-meta a { color: var(--mg-verde-esc); text-decoration: none; }
+.mg-item-meta a:hover { text-decoration: underline; }
+
+/* ---------------------------------------------------------------- cards */
+
+.mg-cards { list-style: none; margin: 0 0 24px; padding: 0; display: grid; gap: 12px;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); }
+.mg-cards-grande { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+.mg-cards a {
+  display: flex; flex-direction: column; gap: 3px; height: 100%;
+  background: var(--mg-papel); border: 1px solid var(--mg-borda); border-radius: 12px;
+  padding: 14px 16px; text-decoration: none; color: var(--mg-tinta);
+  transition: border-color .15s, transform .15s, box-shadow .15s;
+}
+.mg-cards a:hover {
+  border-color: var(--mg-verde); transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(8, 149, 109, .13);
+}
+.mg-card-nome { font-weight: 700; font-size: 17px; line-height: 1.3; }
+.mg-card-num { font-size: 13.5px; color: var(--mg-tinta-fraca); }
+
+.mg-resto { font-size: 14.5px; color: var(--mg-tinta-fraca); line-height: 2; }
+.mg-resto span { opacity: .7; }
+
+/* ----------------------------------------------------------------- tags */
+
+.mg-tags { list-style: none; margin: 0 0 18px; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.mg-tags a {
+  display: inline-block; background: var(--mg-papel); border: 1px solid var(--mg-borda);
+  border-radius: 999px; padding: 6px 14px; font-size: 14.5px;
+  text-decoration: none; color: var(--mg-verde-esc);
+}
+.mg-tags a:hover { border-color: var(--mg-verde); background: #eaf7f2; }
+
+.mg-relacionados { margin-top: 40px; }
+.mg-relacionados-grid { display: grid; gap: 4px 28px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.mg-relacionados h3 { color: var(--mg-tinta-fraca); font-size: 14px; text-transform: uppercase; letter-spacing: .6px; }
+
+.mg-cta {
+  margin-top: 28px; background: #eaf7f2; border: 1px solid #c4e6d8;
+  border-radius: 10px; padding: 14px 18px;
+}
+
+/* ----------------------------------------------------------------- hero */
+
+.mg-hero { padding: 26px 0 4px; }
+.mg-hero h1 { margin-top: 0; }
+.mg-hero p { font-size: 19px; color: #2c4038; max-width: 720px; }
+
+/* o jogo é montado pelo bundle dentro de #root */
+#root { margin: 22px 0 40px; }
+
+/* --------------------------------------------------------------- rodapé */
+
+.mg-rodape {
+  background: var(--mg-tinta); color: #cfdcd6; margin-top: 40px;
+  padding: 40px 0 24px; font-size: 15px;
+}
+.mg-rodape strong { color: #fff; display: block; margin-bottom: 10px; }
+.mg-rodape a { color: #9fe0c6; text-decoration: none; }
+.mg-rodape a:hover { text-decoration: underline; }
+.mg-rodape ul { list-style: none; margin: 0; padding: 0; }
+.mg-rodape li { margin-bottom: 6px; }
+.mg-rodape-cols { display: grid; gap: 28px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.mg-copy {
+  margin: 30px 0 0; padding-top: 18px; border-top: 1px solid #2b3d34;
+  font-size: 13.5px; color: #8fa398;
+}
+
+@media (max-width: 640px) {
+  body { font-size: 16px; }
+  .mg-intro { font-size: 17px; }
+  .mg-topo-int { gap: 8px 16px; }
+  .mg-nav a { padding: 5px 9px; font-size: 14px; }
+}
