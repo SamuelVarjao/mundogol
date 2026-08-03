@@ -17,7 +17,12 @@
   --mg-max: 1080px;
 }
 
-*, *::before, *::after { box-sizing: border-box; }
+/* O CSS do jogo (injetado pelo bundle) nao tem reset de box-sizing e conta com
+   isso nas medidas dele. Por isso o reset fica limitado ao que e nosso, nunca
+   ao #root — um `*` global espremia a faixa azul de 108px para 60px. */
+.mg-navbar, .mg-navbar *,
+#conteudo, #conteudo *, #conteudo *::before, #conteudo *::after,
+.mg-rodape, .mg-rodape * { box-sizing: border-box; }
 
 body {
   margin: 0;
@@ -39,26 +44,43 @@ body {
 
 /* ---------------------------------------------------------------- topo */
 
-.mg-topo {
+/* A faixa azul reproduz exatamente o .header que o bundle desenha dentro do
+   jogo: mesmo gradiente, mesma altura, mesmo padding, logo de 400px e slogan
+   com gap de 100px. Sem box-sizing, igual ao original. */
+.mg-faixa {
+  /* sem width:100% — em bloco a largura ja e total, e assim o padding de 4rem
+     fica dentro da tela em vez de gerar rolagem horizontal */
+  padding: 1.5rem 4rem;
   background: linear-gradient(135deg, var(--mg-azul), var(--mg-azul-esc));
-  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 100px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, .1);
+  height: 60px;
+  color: #fff;
 }
-.mg-topo-int {
-  display: flex; flex-wrap: wrap; align-items: center;
-  justify-content: space-between; gap: 10px 32px;
-  padding-top: 14px; padding-bottom: 14px;
+.mg-faixa .mg-logo { display: block; line-height: 0; }
+.mg-faixa img { display: block; width: 400px; max-width: 100%; height: auto; }
+.mg-slogan {
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #fff;
 }
-/* a logo já traz o nome do site escrito, então o cabeçalho não repete em texto */
-.mg-marca { display: block; line-height: 0; }
-.mg-marca img { display: block; height: 74px; width: auto; max-width: 100%; }
 
-.mg-nav { display: flex; flex-wrap: wrap; gap: 4px 6px; }
-.mg-nav a {
+/* barra de navegação, logo abaixo da faixa, no mesmo azul */
+.mg-navbar { background: #3a6f9e; box-shadow: 0 2px 6px rgba(0, 0, 0, .12); }
+.mg-navbar .mg-container {
+  display: flex; flex-wrap: wrap; gap: 4px 6px;
+  padding-top: 8px; padding-bottom: 8px;
+}
+.mg-navbar a {
   color: #fff; text-decoration: none; font-weight: 600; font-size: 15px;
   padding: 6px 12px; border-radius: 999px; transition: background .15s;
 }
-.mg-nav a:hover, .mg-nav a:focus { background: rgba(255, 255, 255, .18); }
+.mg-navbar a:hover, .mg-navbar a:focus { background: rgba(255, 255, 255, .18); }
 
 /* ------------------------------------------------------------- migalhas */
 
@@ -186,15 +208,17 @@ a:hover { color: var(--mg-verde); }
   font-size: 13.5px; color: #8fa398;
 }
 
-@media (max-width: 900px) {
-  .mg-marca img { height: 58px; }
+/* o slogan some em telas estreitas, igual ao .logo-text do jogo */
+@media (max-width: 768px) {
+  .mg-faixa { padding: 1rem 1.25rem; height: auto; gap: 0; }
+  .mg-slogan { display: none; }
+  .mg-faixa img { width: 260px; }
 }
 
 @media (max-width: 640px) {
   body { font-size: 16px; }
   .mg-intro { font-size: 17px; }
-  .mg-topo-int { gap: 8px 16px; justify-content: center; }
-  .mg-marca img { height: 46px; }
-  .mg-nav { justify-content: center; }
-  .mg-nav a { padding: 5px 9px; font-size: 14px; }
+  .mg-faixa img { width: 210px; }
+  .mg-navbar .mg-container { justify-content: center; }
+  .mg-navbar a { padding: 5px 9px; font-size: 14px; }
 }
