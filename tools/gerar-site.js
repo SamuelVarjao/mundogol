@@ -159,7 +159,7 @@ const qualificador = (dim) => (dim.campo === 'pais' ? 'país' : dim.singular);
 
 const NAV = DIMENSOES.map((d) => `<a href="/${d.base}/">${d.titulo}</a>`).join('\n        ');
 
-function pagina({ url, titulo, tituloAba, descricao, migalhas = [], conteudo, jsonLd = [] }) {
+function pagina({ url, titulo, tituloAba, descricao, migalhas = [], conteudo, jsonLd = [], antesDoMain = '' }) {
   const canonica = CFG.origem + url;
   const migalhasHtml = migalhas.length
     ? `<nav class="mg-migalhas" aria-label="Você está em"><ol>
@@ -212,9 +212,8 @@ function pagina({ url, titulo, tituloAba, descricao, migalhas = [], conteudo, js
 
 <header class="mg-topo">
   <div class="mg-container mg-topo-int">
-    <a class="mg-marca" href="/">
-      <img src="/assets/logo_mundo_gol.png" alt="" width="44" height="44">
-      <span>MundoGol</span>
+    <a class="mg-marca" href="/" aria-label="MundoGol — página inicial">
+      <img src="/assets/logo_mundo_gol.png" alt="MundoGol" width="843" height="296">
     </a>
     <nav class="mg-nav" aria-label="Seções do acervo">
       <a href="/curiosidades/">Acervo</a>
@@ -222,7 +221,7 @@ function pagina({ url, titulo, tituloAba, descricao, migalhas = [], conteudo, js
     </nav>
   </div>
 </header>
-
+${antesDoMain}
 <main class="mg-container" id="conteudo">
 ${migalhasHtml}
 ${conteudo}
@@ -544,14 +543,15 @@ for (const dim of DIMENSOES) {
 {
   const destaques = DADOS.filter((i) => i.texto.length > 110).slice(0, 8);
 
-  const conteudo = `<div class="mg-hero">
-    <h1>MundoGol — curiosidades do futebol mundial</h1>
-    <p>Um baralho de ${DADOS.length} fatos sobre o futebol: recordes, fundações de clubes, decisões de campeonato e marcas individuais. Sorteie uma carta ao acaso ou filtre por time, país, campeonato, jogador e década.</p>
-  </div>
-
+  // o jogo fica fora do <main> para ocupar a largura inteira da hero
+  const hero = `<div class="mg-jogo">
   <div id="root"></div>
+</div>`;
 
-  <article class="mg-artigo">
+  const conteudo = `<article class="mg-artigo">
+    <h1>MundoGol — curiosidades do futebol mundial</h1>
+    <p class="mg-intro">Um baralho de ${DADOS.length} fatos sobre o futebol: recordes, fundações de clubes, decisões de campeonato e marcas individuais. Sorteie uma carta ao acaso no jogo acima ou navegue pelo acervo por time, país, campeonato, jogador e década.</p>
+
     <section class="mg-bloco">
       <h2>O que é o MundoGol</h2>
       <p>O MundoGol nasceu de uma pergunta simples: por que as histórias mais interessantes do futebol ficam espalhadas em notas de rodapé, threads e almanaques fora de catálogo? A proposta do site é reunir essas histórias em registros curtos, cada um com o contexto necessário para que o leitor saiba de que time, de que país, de que competição e de que época o fato veio.</p>
@@ -602,6 +602,7 @@ for (const dim of DIMENSOES) {
     tituloAba: `MundoGol — ${DADOS.length} curiosidades do futebol mundial`,
     descricao: `Acervo com ${DADOS.length} curiosidades do futebol mundial em formato de jogo. Sorteie fatos e navegue por time, país, campeonato, jogador e década.`,
     conteudo,
+    antesDoMain: hero,
     jsonLd: [{
       '@context': 'https://schema.org',
       '@type': 'WebSite',

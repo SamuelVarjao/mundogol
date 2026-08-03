@@ -2,6 +2,10 @@
    Prefixo mg- em tudo para não colidir com o CSS que o bundle.js injeta. */
 
 :root {
+  /* azul do cabeçalho, igual ao .header original do jogo */
+  --mg-azul: #4e88b8;
+  --mg-azul-esc: #3d7db1;
+  /* verde da área do jogo, usado como cor de destaque do conteúdo */
   --mg-verde: #08956d;
   --mg-verde-esc: #067154;
   --mg-verde-2: #32824a;
@@ -36,19 +40,18 @@ body {
 /* ---------------------------------------------------------------- topo */
 
 .mg-topo {
-  background: linear-gradient(135deg, var(--mg-verde), var(--mg-verde-2));
+  background: linear-gradient(135deg, var(--mg-azul), var(--mg-azul-esc));
   color: #fff;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, .12);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, .1);
 }
 .mg-topo-int {
-  display: flex; flex-wrap: wrap; align-items: center; gap: 10px 28px;
-  padding-top: 12px; padding-bottom: 12px;
+  display: flex; flex-wrap: wrap; align-items: center;
+  justify-content: space-between; gap: 10px 32px;
+  padding-top: 14px; padding-bottom: 14px;
 }
-.mg-marca {
-  display: flex; align-items: center; gap: 10px;
-  color: #fff; text-decoration: none; font-weight: 800; font-size: 20px; letter-spacing: .2px;
-}
-.mg-marca img { display: block; width: 44px; height: 44px; object-fit: contain; }
+/* a logo já traz o nome do site escrito, então o cabeçalho não repete em texto */
+.mg-marca { display: block; line-height: 0; }
+.mg-marca img { display: block; height: 74px; width: auto; max-width: 100%; }
 
 .mg-nav { display: flex; flex-wrap: wrap; gap: 4px 6px; }
 .mg-nav a {
@@ -155,14 +158,16 @@ a:hover { color: var(--mg-verde); }
   border-radius: 10px; padding: 14px 18px;
 }
 
-/* ----------------------------------------------------------------- hero */
+/* ------------------------------------------------------- hero: o jogo */
 
-.mg-hero { padding: 26px 0 4px; }
-.mg-hero h1 { margin-top: 0; }
-.mg-hero p { font-size: 19px; color: #2c4038; max-width: 720px; }
+/* o jogo fica fora do container e ocupa a largura inteira da hero.
+   o próprio bundle aplica nele o gradiente verde e min-height 100vh. */
+.mg-jogo { width: 100%; }
+.mg-jogo #root { margin: 0; }
 
-/* o jogo é montado pelo bundle dentro de #root */
-#root { margin: 22px 0 40px; }
+/* o bundle desenha um segundo cabeçalho dentro do #root, com a mesma logo.
+   como o cabeçalho da página já mostra a logo, esse aqui sai de cena. */
+.mg-jogo #root > .mundo-gol > .header { display: none; }
 
 /* --------------------------------------------------------------- rodapé */
 
@@ -181,9 +186,15 @@ a:hover { color: var(--mg-verde); }
   font-size: 13.5px; color: #8fa398;
 }
 
+@media (max-width: 900px) {
+  .mg-marca img { height: 58px; }
+}
+
 @media (max-width: 640px) {
   body { font-size: 16px; }
   .mg-intro { font-size: 17px; }
-  .mg-topo-int { gap: 8px 16px; }
+  .mg-topo-int { gap: 8px 16px; justify-content: center; }
+  .mg-marca img { height: 46px; }
+  .mg-nav { justify-content: center; }
   .mg-nav a { padding: 5px 9px; font-size: 14px; }
 }
